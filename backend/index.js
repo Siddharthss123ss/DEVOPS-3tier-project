@@ -4,7 +4,7 @@ const db = require("./db");
 const app = express();
 
 app.get("/", (req, res) => {
-  res.send("Backend running 🚀");
+  res.send("Backend running v2 🚀");
 });
 
 app.get("/users", (req, res) => {
