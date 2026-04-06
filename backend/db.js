@@ -1,15 +1,10 @@
 const mysql = require("mysql2");
 
 const connection = mysql.createPool({
-  host: "db",
+  host: "db",          // 💣 VERY IMPORTANT
   user: "root",
   password: "root",
-  database: "testdb",
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
+  database: "testdb"
 });
-
-console.log("MySQL Pool Created ✅");
 
 module.exports = connection;
