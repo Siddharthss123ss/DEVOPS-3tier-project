@@ -1,0 +1,26 @@
+name: Docker CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    env:
+      DOCKER_USER: ${{ secrets.DOCKERHUB_USER }}
+      DOCKER_PASS: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Login to DockerHub
+        run: echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+
+      - name: Build Docker Image
+        run: docker build -t $DOCKER_USER/3tier-backend ./backend
+
+      - name: Push Docker Image
+        run: docker push $DOCKER_USER/3tier-backend
