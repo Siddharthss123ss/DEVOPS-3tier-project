@@ -10,7 +10,7 @@
 
   <script>
     async function getUsers() {
-      const res = await fetch("http://13.232.130.94:3000/");
+      const res = await fetch("http://13.232.130.94:3000/users");
       const data = await res.json();
 
       const list = document.getElementById("users");
