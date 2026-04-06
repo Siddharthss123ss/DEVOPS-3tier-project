@@ -8,19 +8,15 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
-    env:
-      DOCKER_USER: ${{ secrets.DOCKERHUB_USER }}
-      DOCKER_PASS: ${{ secrets.DOCKERHUB_TOKEN }}
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Login to DockerHub
-        run: echo "$DOCKER_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USER }}" --password-stdin
 
       - name: Build Docker Image
-        run: docker build -t $DOCKERHUB_USER/3tier-backend ./backend
+        run: docker build -t ${{ secrets.DOCKERHUB_USER }}/3tier-backend ./backend
 
       - name: Push Docker Image
-        run: docker push $DOCKERHUB_USER/3tier-backend
+        run: docker push ${{ secrets.DOCKERHUB_USER }}/3tier-backend
