@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: your-dockerhub-username/frontend   # 👈 YE IMPORTANT
+        image: siddharthss123ss/3tier-frontend:latest
         ports:
         - containerPort: 3000
