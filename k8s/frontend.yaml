@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: siddharthss123ss/3tier-frontend
+        image: siddharthss123ss/3tier-frontend:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
 ---
