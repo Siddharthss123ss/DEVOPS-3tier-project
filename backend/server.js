@@ -5,10 +5,10 @@ const app = express();
 
 // MySQL Connection Pool
 const db = mysql.createPool({
-  host: process.env.DB_HOST || "mysql",      // ✅ Kubernetes service name
+  host: process.env.DB_HOST || "mysql",
   user: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD || "root123",
-  database: process.env.DB_NAME || "mydb",
+  database: process.env.DB_NAME || "testdb",   // 👈 FIX (mydb → testdb)
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
