@@ -2,62 +2,34 @@
 <html>
 <head>
   <title>3 Tier App</title>
-  <style>
-    body {
-      font-family: Arial;
-      text-align: center;
-      background: #f4f4f4;
-    }
-    button {
-      padding: 10px 20px;
-      background: #007bff;
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    li {
-      background: white;
-      margin: 10px auto;
-      padding: 10px;
-      width: 200px;
-      border-radius: 5px;
-    }
-  </style>
 </head>
 <body>
 
-  <h1>Users List 🚀</h1>
-  <button onclick="loadUsers()">Load Users</button>
-  <ul id="list"></ul>
+<h1>Users List 🚀</h1>
+<button onclick="loadUsers()">Load Users</button>
+<ul id="list"></ul>
 
-  <script>
-    async function loadUsers() {
-      try {
-        // 👇 dynamic URL (important)
-        const res = await fetch(`${window.location.protocol}//${window.location.hostname}:5000/users`);
-        
-        const data = await res.json();
+<script>
+async function loadUsers() {
+  try {
+    const res = await fetch("http://localhost:5000/users");
+    const data = await res.json();
 
-        const list = document.getElementById("list");
-        list.innerHTML = "";
+    const list = document.getElementById("list");
+    list.innerHTML = "";
 
-        data.forEach(user => {
-          const li = document.createElement("li");
-          li.innerText = user.name;
-          list.appendChild(li);
-        });
+    data.forEach(user => {
+      const li = document.createElement("li");
+      li.innerText = user.name;
+      list.appendChild(li);
+    });
 
-      } catch (err) {
-        alert("Error fetching users 😢");
-        console.error(err);
-      }
-    }
-  </script>
+  } catch (err) {
+    alert("Error fetching users 😢");
+    console.error(err);
+  }
+}
+</script>
 
 </body>
 </html>
