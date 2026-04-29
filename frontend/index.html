@@ -38,7 +38,9 @@
   <script>
     async function loadUsers() {
       try {
-        const res = await fetch("http://localhost:5000/users");
+        // 👇 dynamic URL (important)
+        const res = await fetch(`${window.location.protocol}//${window.location.hostname}:5000/users`);
+        
         const data = await res.json();
 
         const list = document.getElementById("list");
@@ -49,6 +51,7 @@
           li.innerText = user.name;
           list.appendChild(li);
         });
+
       } catch (err) {
         alert("Error fetching users 😢");
         console.error(err);
